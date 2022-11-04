@@ -12,13 +12,13 @@ namespace GlobalSolution.Project.Web.Models
         [Column("nm_usuario"), StringLength(50)]
         public string? Nome { get; set; }
 
-        [Column("ds_email"), StringLength(50), EmailAddress]
+        [Column("ds_email"), StringLength(50), EmailAddress, Display(Name = "E-mail")]
         public string? Email { get; set; }
 
         [Column("dt_nascimento"), DataType(DataType.Date), Display(Name = "Data de Nascimento") ]
         public DateTime DataNascimento { get; set; }
 
-        [Column("ds_senha"), MinLength(8), StringLength(20), DataType(DataType.Password)]
+        [Column("ds_senha"), MinLength(8), MaxLength(20), DataType(DataType.Password)]
         public string? Senha { get; set; }
 
 

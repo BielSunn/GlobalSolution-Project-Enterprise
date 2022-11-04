@@ -3,11 +3,9 @@
 
 <h1>Login</h1>
 
-@TempData["msg"]
+<mensagem texto="@TempData["msg"]"></mensagem>
 
 <form asp-action="UsuarioLogin">
-
-
 
     <div class="mb-3">
         <label asp-for="Email"></label>

@@ -20,27 +20,35 @@ namespace GlobalSolution.Project.Web.Controllers
             return View();
         }
 
-        public IActionResult UsuarioLogin()
+        public IActionResult UsuarioLogin(string email, string senha)
         {
+            var userEmail = _context.Usuarios.Where(x => x.Email.Contains(email)).ToList();
+            var userSenha = _context.Usuarios.Where(y => y.Senha.Contains(senha)).ToList();
+
+            if(userEmail.Count < 1 && userSenha.Count < 1)
+            {
+                TempData["msg"] = "E-mail ou senha inválido";
+                return View();
+            }
+
             return View();
         }
 
         [HttpPost]
-        public IActionResult UsuarioCadastro()
-        {
-            return View();
-        }
-
-        [HttpGet]
         public IActionResult UsuarioCadastro(Usuario usuario)
         {
-            
             _context.Usuarios.Add(usuario);
             _context.SaveChanges();
 
             TempData["msg"] = "Usuário cadastrado com sucesso !";
 
             return RedirectToAction("UsuarioLogin");
+        }
+
+        [HttpGet]
+        public IActionResult UsuarioCadastro()
+        {
+            return View();
         }
 
     }
