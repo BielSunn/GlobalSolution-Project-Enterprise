@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GlobalSolution.Project.Web.Models
@@ -6,14 +7,26 @@ namespace GlobalSolution.Project.Web.Models
     [Table("T_LOCAL")]
     public class Local
     {
-        [Column("id_local")]
+        [Column("id_local"), HiddenInput]
         public int LocalId { get; set; }
 
         [Column("nm_local"), StringLength(90), Display(Name = "Nome do Local")]
         public string? Nome { get; set; }
 
-        [Column("tp_local"), StringLength(30), Display(Name = "Tipo")]
-        public TipoLocal TipoLocal { get; set; }
+        [Column("tp_local"), Display(Name = "Tipo"), Required]
+        public TipoLocal? Tipo { get; set; }
+
+        //Relacionamento 1:1
+        public Telefone Telefone { get; set; }
+        public int TelefoneId { get; set; } //FK
+
+        //Relacionamento N:1
+        public Logradouro Logradouro { get; set; }
+        public int LogradouroId { get; set; }
+
+        //Relacionamento N:M
+        public IList<AcessibilidadeLocal> AcessibilidadeLocal { get; set; }
+
     }
 
     public enum TipoLocal

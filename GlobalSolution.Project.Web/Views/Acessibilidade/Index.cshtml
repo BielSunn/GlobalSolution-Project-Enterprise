@@ -1,0 +1,74 @@
+﻿@model Acessibilidade
+
+<div class="row">
+    <mensagem texto="@TempData["msg"]"></mensagem>
+
+    <div class="col-6">
+        <h1>Cadastro de Acessibilidade</h1>
+
+        <form asp-action="cadastrar">
+            <div class="mb-3">
+                <label asp-for="TipoAcessibilidade"></label>
+                <input asp-for="TipoAcessibilidade" class="form-control" />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Descricao"></label>
+                <textarea asp-for="Descricao" cols="20" rows="2" class="form-control"></textarea>
+            </div>
+
+            <button class="btn btn-primary">Salvar</button>
+        </form>
+    </div>
+
+    <div class="col-6">
+        <h1>Acessibilidades</h1>
+
+        <table class="table">
+            <tr>
+                <th>Tipo</th>
+                <th>Descrição</th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in ViewBag.lista)
+            {
+                <tr>
+                    <td>@item.TipoAcessibilidade</td>
+                    <td>@item.Descricao</td>
+            <td>
+                <a asp-action="editar" asp-route-id="@item.AcessibilidadeId" class="btn btn-sm btn-warning">Editar</a>
+                <!-- Button trigger modal -->
+                <button onclick="acessibilidadeId.value = @item.AcessibilidadeId" type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Remover
+                </button>
+            </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Confirmação</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Realmente deseja excluir a acessibilidade?
+            </div>
+            <div class="modal-footer">
+                <form asp-action="excluir">
+                    <input type="hidden" name="id" id="acessibilidadeId" />
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
+                    <button type="submit" class="btn btn-danger">Sim</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

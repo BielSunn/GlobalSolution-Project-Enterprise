@@ -1,0 +1,40 @@
+﻿@model Local
+
+<div class="mb-3">
+    <label asp-for="Nome"></label>
+    <input asp-for="Nome" class="form-control" />
+</div>
+
+
+<div class="mb-3">
+    <label asp-for="Tipo"></label>
+    <select asp-for="Tipo" class="form-select"
+            asp-items="@Html.GetEnumSelectList<TipoLocal>()">
+        <option>Selecione o local</option>
+    </select>
+</div>
+
+<div class="mb-3">
+    <label asp-for="Logradouro"></label>
+    <select class="form-select" asp-items="@ViewBag.logradouros" asp-for="LogradouroId">
+        <option>Selecione</option>
+    </select>
+</div>
+
+<fieldset>
+    <input asp-for="Telefone.TelefoneId" />
+    <legend>Telefone</legend>
+
+    <div class="mb-3">
+        <label asp-for="Telefone.Numero"></label>
+        <input asp-for="Telefone.Numero" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Telefone.NumeroDDD"></label>
+        <input asp-for="Telefone.NumeroDDD" class="form-control" />
+    </div>
+</fieldset>
+
+
+

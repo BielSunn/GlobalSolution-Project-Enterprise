@@ -4,6 +4,7 @@ using GlobalSolution.Project.Web.Persistencia;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GlobalSolution.Project.Web.Migrations
 {
     [DbContext(typeof(GlobalSolutionContext))]
-    partial class GlobalSolutionContextModelSnapshot : ModelSnapshot
+    [Migration("20221106232506_CriadoTabelas_Relacionamentos")]
+    partial class CriadoTabelas_Relacionamentos
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -31,13 +33,7 @@ namespace GlobalSolution.Project.Web.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AcessibilidadeId"), 1L, 1);
 
-                    b.Property<string>("Descricao")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)")
-                        .HasColumnName("ds_acessibilidade");
-
                     b.Property<string>("TipoAcessibilidade")
-                        .IsRequired()
                         .HasMaxLength(90)
                         .HasColumnType("nvarchar(90)")
                         .HasColumnName("tp_acessibilidade");
@@ -62,79 +58,28 @@ namespace GlobalSolution.Project.Web.Migrations
                     b.ToTable("AcessibilidadeLocais");
                 });
 
-            modelBuilder.Entity("GlobalSolution.Project.Web.Models.Bairro", b =>
+            modelBuilder.Entity("GlobalSolution.Project.Web.Models.Endereco", b =>
                 {
-                    b.Property<int>("BairroId")
+                    b.Property<int>("EnderecoId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasColumnName("id_bairro");
+                        .HasColumnName("id_logradouro");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BairroId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EnderecoId"), 1L, 1);
 
-                    b.Property<int>("CidadeId")
-                        .HasColumnType("int");
+                    b.Property<string>("Cep")
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)")
+                        .HasColumnName("nr_cep");
 
-                    b.Property<string>("Nome")
-                        .IsRequired()
+                    b.Property<string>("Logradouro")
                         .HasMaxLength(90)
                         .HasColumnType("nvarchar(90)")
-                        .HasColumnName("nm_cidade");
+                        .HasColumnName("ds_logradouro");
 
-                    b.HasKey("BairroId");
+                    b.HasKey("EnderecoId");
 
-                    b.HasIndex("CidadeId");
-
-                    b.ToTable("T_BAIRRO");
-                });
-
-            modelBuilder.Entity("GlobalSolution.Project.Web.Models.Cidade", b =>
-                {
-                    b.Property<int>("CidadeId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("id_cidade");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CidadeId"), 1L, 1);
-
-                    b.Property<int>("EstadoId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasMaxLength(80)
-                        .HasColumnType("nvarchar(80)")
-                        .HasColumnName("nm_cidade");
-
-                    b.HasKey("CidadeId");
-
-                    b.HasIndex("EstadoId");
-
-                    b.ToTable("T_CIDADE");
-                });
-
-            modelBuilder.Entity("GlobalSolution.Project.Web.Models.Estado", b =>
-                {
-                    b.Property<int>("EstadoId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("id_estado");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EstadoId"), 1L, 1);
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)")
-                        .HasColumnName("nm_estado");
-
-                    b.Property<string>("Sigla")
-                        .HasMaxLength(2)
-                        .HasColumnType("nvarchar(2)")
-                        .HasColumnName("sg_estado");
-
-                    b.HasKey("EstadoId");
-
-                    b.ToTable("T_ESTADO");
+                    b.ToTable("T_ENDERECO");
                 });
 
             modelBuilder.Entity("GlobalSolution.Project.Web.Models.Local", b =>
@@ -146,7 +91,7 @@ namespace GlobalSolution.Project.Web.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("LocalId"), 1L, 1);
 
-                    b.Property<int>("LogradouroId")
+                    b.Property<int>("EnderecoId")
                         .HasColumnType("int");
 
                     b.Property<string>("Nome")
@@ -154,50 +99,15 @@ namespace GlobalSolution.Project.Web.Migrations
                         .HasColumnType("nvarchar(90)")
                         .HasColumnName("nm_local");
 
-                    b.Property<int>("TelefoneId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Tipo")
+                    b.Property<int?>("Tipo")
                         .HasColumnType("int")
                         .HasColumnName("tp_local");
 
                     b.HasKey("LocalId");
 
-                    b.HasIndex("LogradouroId");
-
-                    b.HasIndex("TelefoneId");
+                    b.HasIndex("EnderecoId");
 
                     b.ToTable("T_LOCAL");
-                });
-
-            modelBuilder.Entity("GlobalSolution.Project.Web.Models.Logradouro", b =>
-                {
-                    b.Property<int>("LogradouroId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("id_logradouro");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("LogradouroId"), 1L, 1);
-
-                    b.Property<int>("BairroId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Cep")
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)")
-                        .HasColumnName("nr_cep");
-
-                    b.Property<string>("Descricao")
-                        .IsRequired()
-                        .HasMaxLength(90)
-                        .HasColumnType("nvarchar(90)")
-                        .HasColumnName("ds_logradouro");
-
-                    b.HasKey("LogradouroId");
-
-                    b.HasIndex("BairroId");
-
-                    b.ToTable("T_LOGRADOURO");
                 });
 
             modelBuilder.Entity("GlobalSolution.Project.Web.Models.Telefone", b =>
@@ -279,56 +189,15 @@ namespace GlobalSolution.Project.Web.Migrations
                     b.Navigation("Local");
                 });
 
-            modelBuilder.Entity("GlobalSolution.Project.Web.Models.Bairro", b =>
-                {
-                    b.HasOne("GlobalSolution.Project.Web.Models.Cidade", "Cidade")
-                        .WithMany("Bairros")
-                        .HasForeignKey("CidadeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Cidade");
-                });
-
-            modelBuilder.Entity("GlobalSolution.Project.Web.Models.Cidade", b =>
-                {
-                    b.HasOne("GlobalSolution.Project.Web.Models.Estado", "Estado")
-                        .WithMany("Cidades")
-                        .HasForeignKey("EstadoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Estado");
-                });
-
             modelBuilder.Entity("GlobalSolution.Project.Web.Models.Local", b =>
                 {
-                    b.HasOne("GlobalSolution.Project.Web.Models.Logradouro", "Logradouro")
-                        .WithMany("Locais")
-                        .HasForeignKey("LogradouroId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("GlobalSolution.Project.Web.Models.Telefone", "Telefone")
+                    b.HasOne("GlobalSolution.Project.Web.Models.Endereco", "Endereco")
                         .WithMany()
-                        .HasForeignKey("TelefoneId")
+                        .HasForeignKey("EnderecoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Logradouro");
-
-                    b.Navigation("Telefone");
-                });
-
-            modelBuilder.Entity("GlobalSolution.Project.Web.Models.Logradouro", b =>
-                {
-                    b.HasOne("GlobalSolution.Project.Web.Models.Bairro", "Bairro")
-                        .WithMany("Logradouros")
-                        .HasForeignKey("BairroId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Bairro");
+                    b.Navigation("Endereco");
                 });
 
             modelBuilder.Entity("GlobalSolution.Project.Web.Models.Usuario", b =>
@@ -347,29 +216,9 @@ namespace GlobalSolution.Project.Web.Migrations
                     b.Navigation("AcessibilidadeLocal");
                 });
 
-            modelBuilder.Entity("GlobalSolution.Project.Web.Models.Bairro", b =>
-                {
-                    b.Navigation("Logradouros");
-                });
-
-            modelBuilder.Entity("GlobalSolution.Project.Web.Models.Cidade", b =>
-                {
-                    b.Navigation("Bairros");
-                });
-
-            modelBuilder.Entity("GlobalSolution.Project.Web.Models.Estado", b =>
-                {
-                    b.Navigation("Cidades");
-                });
-
             modelBuilder.Entity("GlobalSolution.Project.Web.Models.Local", b =>
                 {
                     b.Navigation("AcessibilidadeLocal");
-                });
-
-            modelBuilder.Entity("GlobalSolution.Project.Web.Models.Logradouro", b =>
-                {
-                    b.Navigation("Locais");
                 });
 #pragma warning restore 612, 618
         }

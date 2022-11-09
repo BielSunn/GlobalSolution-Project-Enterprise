@@ -1,0 +1,21 @@
+﻿@model Estado
+
+<h1>Cadastro Estado</h1>
+
+<mensagem texto="@TempData["msg"]"></mensagem>
+
+<form asp-action="cadastrar">
+
+    <div class="mb-3">
+        <label asp-for="Nome"></label>
+        <input asp-for="Nome" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Sigla"></label>
+        <input asp-for="Sigla" class="form-control" />
+    </div>
+
+    <button class="btn btn-primary">Cadastrar</button>
+
+</form>

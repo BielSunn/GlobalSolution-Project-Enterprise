@@ -1,0 +1,22 @@
+﻿@model Acessibilidade
+
+<h1>Edição Acessibilidade</h1>
+
+<mensagem texto="@TempData["msg"]"></mensagem>
+
+<form asp-action="editar">
+    <input asp-for="AcessibilidadeId" />
+
+    <div class="mb-3">
+        <label asp-for="TipoAcessibilidade"></label>
+        <input asp-for="TipoAcessibilidade" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Descricao"></label>
+        <textarea asp-for="Descricao" cols="20" rows="2" class="form-control"></textarea>
+    </div>
+
+    <button class="btn btn-primary">Editar</button>
+    <a asp-action="index" class="btn btn-outline-dark">Voltar</a>
+</form>

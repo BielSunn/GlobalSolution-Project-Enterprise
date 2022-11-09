@@ -1,0 +1,77 @@
+﻿@model List<Local>
+
+
+<h1>Local</h1>
+
+<mensagem texto="@TempData["msg"]"></mensagem>
+
+<form asp-action="index" method="get" class="row row-cols-lg-auto g-3 align-items-center mb-3">
+    <div class="col-12">
+        <input type="text" name="nomeBusca" placeholder="Digite o nome" class="form-control" />
+    </div>
+
+    <div class="col-12">
+        <button class="btn btn-outline-success">Pesquisar</button>
+        <a asp-action="index" class="btn btn-outline-primary">Listar Todos</a>
+    </div>
+
+    <div class="col-12">
+        <a asp-action="cadastrar" class="btn btn-outline-primary">Cadastrar</a>
+    </div>
+
+</form>
+
+<table class="table table-striped">
+    <tr>
+        <th>Nome</th>
+        <th>Tipo</th>
+        <th>Logradouro</th>
+        <th>CEP</th>
+        <th>DDD</th>
+        <th>Número Telefone</th>
+        <th></th>
+    </tr>
+    @foreach (var local in Model)
+    {
+        <tr>
+            <td>@local.Nome</td>
+            <td>@local.Tipo</td>
+            <td>@local.Logradouro?.Descricao</td>
+            <td>@local.Logradouro?.Cep</td>
+            <td>@local.Telefone?.NumeroDDD</td>
+            <td>@local.Telefone?.Numero</td>
+            <td>
+                <a asp-action="editar" asp-route-id="@local.LocalId" class="btn btn-sm btn-dark">Editar</a>
+                <a asp-action="detalhar" asp-route-id="@local.LocalId" class="btn btn-sm btn-warning">Detalhar</a>
+                <!-- Button trigger modal -->
+                <button onclick="localId.value = @local.LocalId" type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Remover
+                </button>
+            </td>
+        </tr>
+    }
+
+</table>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Confirmação</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Realmente deseja excluir o local?
+            </div>
+            <div class="modal-footer">
+                <form asp-action="excluir">
+                    <input type="hidden" name="id" id="localId" />
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
+                    <button type="submit" class="btn btn-danger">Sim</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

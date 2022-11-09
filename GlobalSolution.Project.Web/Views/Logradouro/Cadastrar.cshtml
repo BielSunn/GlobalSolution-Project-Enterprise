@@ -1,0 +1,28 @@
+﻿@model Logradouro
+
+<h1>Cadastro Logradouro</h1>
+
+<mensagem texto="@TempData["msg"]"></mensagem>
+
+<form asp-action="cadastrar">
+
+    <div class="mb-3">
+        <label asp-for="Descricao"></label>
+        <input asp-for="Descricao" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Cep"></label>
+        <input asp-for="Cep" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Bairro"></label>
+        <select class="form-select" asp-items="@ViewBag.bairros" asp-for="BairroId">
+            <option>Selecione</option>
+        </select>
+    </div>
+
+    <button class="btn btn-primary">Cadastrar</button>
+
+</form>

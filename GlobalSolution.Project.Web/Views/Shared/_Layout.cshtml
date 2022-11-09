@@ -12,7 +12,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">GlobalSolution.Project.Web</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Is it Acessible?</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -24,6 +24,38 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                        <!--Local-->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-dark dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Local
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" asp-action="cadastrar" asp-controller="local">Cadastrar</a></li>
+                                <li><a class="dropdown-item" asp-action="index" asp-controller="local">Listar</a></li>
+                            </ul>
+                        </li>
+                        <!--Acessibilidade-->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-dark dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Acessibilidade
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" asp-action="Index" asp-controller="acessibilidade">Acessibilidade</a></li>
+                            </ul>
+                        </li>
+                        <!--Endereço-->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-dark dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Endereço
+                            </a>
+                            <!--Estado-->
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" asp-action="Cadastrar" asp-controller="estado">Estado</a></li>
+                                <li><a class="dropdown-item" asp-action="Cadastrar" asp-controller="cidade">Cidade</a></li>
+                                <li><a class="dropdown-item" asp-action="Cadastrar" asp-controller="bairro">Bairro</a></li>
+                                <li><a class="dropdown-item" asp-action="Cadastrar" asp-controller="Logradouro">Logradouro</a></li>
+                            </ul>
                         </li>
                     </ul>
                 </div>

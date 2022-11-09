@@ -4,6 +4,7 @@ using GlobalSolution.Project.Web.Persistencia;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GlobalSolution.Project.Web.Migrations
 {
     [DbContext(typeof(GlobalSolutionContext))]
-    partial class GlobalSolutionContextModelSnapshot : ModelSnapshot
+    [Migration("20221109015518_ajustesTabelas")]
+    partial class ajustesTabelas
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,8 +34,8 @@ namespace GlobalSolution.Project.Web.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AcessibilidadeId"), 1L, 1);
 
                     b.Property<string>("Descricao")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)")
                         .HasColumnName("ds_acessibilidade");
 
                     b.Property<string>("TipoAcessibilidade")

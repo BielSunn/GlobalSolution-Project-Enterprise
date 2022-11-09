@@ -21,6 +21,12 @@ namespace GlobalSolution.Project.Web.Models
         [Column("ds_senha"), MinLength(8), MaxLength(20), DataType(DataType.Password)]
         public string? Senha { get; set; }
 
+        //Relacionamento 1:1
+        public Telefone Telefone { get; set; }
+        public int TelefoneId { get; set; } //FK
+
 
     }
+
+
 }

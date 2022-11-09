@@ -4,6 +4,7 @@ using GlobalSolution.Project.Web.Persistencia;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GlobalSolution.Project.Web.Migrations
 {
     [DbContext(typeof(GlobalSolutionContext))]
-    partial class GlobalSolutionContextModelSnapshot : ModelSnapshot
+    [Migration("20221108193654_criadoTabelasNovas")]
+    partial class criadoTabelasNovas
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,11 +32,6 @@ namespace GlobalSolution.Project.Web.Migrations
                         .HasColumnName("id_acessibilidade");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AcessibilidadeId"), 1L, 1);
-
-                    b.Property<string>("Descricao")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)")
-                        .HasColumnName("ds_acessibilidade");
 
                     b.Property<string>("TipoAcessibilidade")
                         .IsRequired()
@@ -112,6 +109,30 @@ namespace GlobalSolution.Project.Web.Migrations
                     b.ToTable("T_CIDADE");
                 });
 
+            modelBuilder.Entity("GlobalSolution.Project.Web.Models.Endereco", b =>
+                {
+                    b.Property<int>("EnderecoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("id_logradouro");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EnderecoId"), 1L, 1);
+
+                    b.Property<string>("Cep")
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)")
+                        .HasColumnName("nr_cep");
+
+                    b.Property<string>("Logradouro")
+                        .HasMaxLength(90)
+                        .HasColumnType("nvarchar(90)")
+                        .HasColumnName("ds_logradouro");
+
+                    b.HasKey("EnderecoId");
+
+                    b.ToTable("T_ENDERECO");
+                });
+
             modelBuilder.Entity("GlobalSolution.Project.Web.Models.Estado", b =>
                 {
                     b.Property<int>("EstadoId")
@@ -146,6 +167,9 @@ namespace GlobalSolution.Project.Web.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("LocalId"), 1L, 1);
 
+                    b.Property<int>("EnderecoId")
+                        .HasColumnType("int");
+
                     b.Property<int>("LogradouroId")
                         .HasColumnType("int");
 
@@ -162,6 +186,8 @@ namespace GlobalSolution.Project.Web.Migrations
                         .HasColumnName("tp_local");
 
                     b.HasKey("LocalId");
+
+                    b.HasIndex("EnderecoId");
 
                     b.HasIndex("LogradouroId");
 
@@ -303,6 +329,12 @@ namespace GlobalSolution.Project.Web.Migrations
 
             modelBuilder.Entity("GlobalSolution.Project.Web.Models.Local", b =>
                 {
+                    b.HasOne("GlobalSolution.Project.Web.Models.Endereco", "Endereco")
+                        .WithMany()
+                        .HasForeignKey("EnderecoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("GlobalSolution.Project.Web.Models.Logradouro", "Logradouro")
                         .WithMany("Locais")
                         .HasForeignKey("LogradouroId")
@@ -314,6 +346,8 @@ namespace GlobalSolution.Project.Web.Migrations
                         .HasForeignKey("TelefoneId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Endereco");
 
                     b.Navigation("Logradouro");
 

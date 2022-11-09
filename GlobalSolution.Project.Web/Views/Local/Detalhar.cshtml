@@ -1,0 +1,60 @@
+﻿@model Local
+
+
+<h1>
+    <span class="badge bg-primary">@Model.Nome</span>
+</h1>
+
+<table class="table">
+    <tr>
+        <th>Nome</th>
+        <th>Tipo</th>
+        <th>Endereço</th>
+        <th>Acessibilidade</th>
+    </tr>
+
+    <tr>
+        <td>@Model.Nome</td>
+        <td>@Model.Tipo</td>
+        <td>@Model.Logradouro?.Descricao</td>
+        <td>@Model.Logradouro?.Cep</td>
+        <td></td>
+    </tr>
+
+</table>
+
+<div class="mb-3">
+    <a asp-action="editar" asp-route-id="@Model.LocalId" class="btn btn-outline-primary">Editar</a>
+    <a asp-action="index" class="btn btn-outline-dark">Lista de Locais</a>
+</div>
+
+<h2>Adicionar Acessibilidade</h2>
+<mensagem texto="@TempData["msg"]"></mensagem>
+
+<form asp-action="adicionar" class="row row-cols-lg-auto g-3 align-items-center mb-3">
+    <input type="hidden" name="LocalId" value="@Model.LocalId" />
+
+    <div class="mb-3">
+        <label asp-for="Tipo"></label>
+        <select class="form-select" asp-items="@ViewBag.acessibilidades" name="AcessibilidadeId">
+            <option>Selecione</option>
+        </select>
+    </div>
+
+    <button class="btn btn-success">Adicionar</button>
+</form>
+
+<h2>Acessibilidades Disponíveis no Local</h2>
+<ul class="list-group">
+    @foreach (var item in @ViewBag.listaLocais)
+    {
+        <li class="list-group-item">@item.TipoAcessibilidade <span class="badge bg-secondary">@item.AcessibilidadeId</span></li>
+    }
+</ul>
+
+
+
+
+
+
+
