@@ -37,13 +37,16 @@ namespace GlobalSolution.Project.Web.Controllers
                 .ToList();
             //enviar para a view a lista de cursos associados ao aluno
             ViewBag.listaLocais = acessibilidadeLocais;
-            //TempData["listaLocais"] = acessibilidadeLocais;
 
-            //Pesquisar todos as acessibilidades disponíveis
-            var lista = _context.Acessibilidades.ToList();
+            //Pesquisar todas as acessibilidades com status disponível
+            var lista = _context.Acessibilidades.Where(c => c.Status).ToList();
 
-            //Filtrar a lista de cursos, retirando os cursos associados ao aluno
+            //Filtrar a lista de acessibilidade, retirando as acessibilidades já associados ao local
             var listaFiltrada = lista.Where(c => !acessibilidadeLocais.Any(c1 => c.AcessibilidadeId == c1.AcessibilidadeId));
+
+            //Verificar se há acessibilidades cadastradas
+            var qtdeAcessibilidade = lista.Count();
+            ViewBag.qtdeAcessibilidade = qtdeAcessibilidade;
 
             //enviar o SelectList de nano courses para a view (options)
             ViewBag.acessibilidades = new SelectList(listaFiltrada, "AcessibilidadeId", "TipoAcessibilidade");
@@ -66,7 +69,7 @@ namespace GlobalSolution.Project.Web.Controllers
             _context.Locais.Remove(local);
             _context.SaveChanges();
 
-            TempData["msg"] = "Local Removido !";
+            TempData["msg"] = "Local Removido";
             return RedirectToAction("Index");
         }
 
@@ -76,7 +79,7 @@ namespace GlobalSolution.Project.Web.Controllers
             _context.Locais.Update(local);
             _context.SaveChanges();
 
-            TempData["msg"] = "Local atualizado !";
+            TempData["msg"] = "Local Atualizado";
             return RedirectToAction("Index");
         }
 
@@ -99,7 +102,7 @@ namespace GlobalSolution.Project.Web.Controllers
         {
             _context.Locais.Add(local);
             _context.SaveChanges();
-            TempData["msg"] = "Local cadastrado com sucesso !";
+            TempData["msg"] = "Local Cadastrado";
 
             return RedirectToAction("Index");
         }
@@ -124,6 +127,9 @@ namespace GlobalSolution.Project.Web.Controllers
         private void CarregarLogradouros()
         {
             var lista = _context.Logradouros.ToList();
+
+            var qtdeLogradouro = lista.Count();
+            ViewBag.qtdeLogradouro = qtdeLogradouro;
 
             //Enviar o SelectList para a View 
             ViewBag.logradouros = new SelectList(lista, "LogradouroId", "Descricao"); //lista, value, texto 

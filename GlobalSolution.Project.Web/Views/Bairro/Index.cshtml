@@ -1,0 +1,58 @@
+﻿@model List<Bairro>
+
+<h1>Bairros</h1>
+
+<mensagem texto="@TempData["msg"]"></mensagem>
+
+<div class="mb-3">
+    <a asp-action="cadastrar" class="btn btn-outline-info">Cadastrar</a>
+</div>
+
+<table class="table table-striped">
+    <tr>
+        <th>Nome</th>
+        <th>Cidade</th>
+        <th>Estado</th>
+        <th></th>
+    </tr>
+
+    @foreach (var bairro in Model)
+    {
+        <tr>
+            <td>@bairro.Nome</td>
+            <td>@bairro.Cidade.Nome</td>
+            <td>@bairro.Cidade.Estado.Nome - @bairro.Cidade.Estado.Sigla</td>
+            <td>
+                <a asp-action="editar" asp-route-id="@bairro.BairroId" class="btn btn-sm btn-warning">Editar</a>
+                <!-- Button trigger modal -->
+                <button onclick="bairroId.value = @bairro.BairroId" type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Remover
+                </button>
+            </td>
+        </tr>
+    }
+
+</table>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Confirmação</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Realmente deseja excluir o Bairro?
+                <span class="badge bg-danger">Caso esteja atrelado a algum registro, eles também serão deletados em cascada</span>
+            </div>
+            <div class="modal-footer">
+                <form asp-action="excluir">
+                    <input type="hidden" name="id" id="bairroId" />
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
+                    <button type="submit" class="btn btn-danger">Sim</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

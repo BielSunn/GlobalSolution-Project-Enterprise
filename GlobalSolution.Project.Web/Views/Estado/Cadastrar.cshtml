@@ -6,16 +6,9 @@
 
 <form asp-action="cadastrar">
 
-    <div class="mb-3">
-        <label asp-for="Nome"></label>
-        <input asp-for="Nome" class="form-control" />
-    </div>
-
-    <div class="mb-3">
-        <label asp-for="Sigla"></label>
-        <input asp-for="Sigla" class="form-control" />
-    </div>
+    <partial name="_Form" />
 
     <button class="btn btn-primary">Cadastrar</button>
+    <a asp-action="index" class="btn btn-outline-dark">Estados</a>
 
 </form>

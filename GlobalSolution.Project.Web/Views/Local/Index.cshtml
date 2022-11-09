@@ -12,11 +12,11 @@
 
     <div class="col-12">
         <button class="btn btn-outline-success">Pesquisar</button>
-        <a asp-action="index" class="btn btn-outline-primary">Listar Todos</a>
+        <a asp-action="index" class="btn btn-outline-info">Listar Todos</a>
     </div>
 
     <div class="col-12">
-        <a asp-action="cadastrar" class="btn btn-outline-primary">Cadastrar</a>
+        <a asp-action="cadastrar" class="btn btn-outline-secondary">Cadastrar</a>
     </div>
 
 </form>
@@ -27,7 +27,6 @@
         <th>Tipo</th>
         <th>Logradouro</th>
         <th>CEP</th>
-        <th>DDD</th>
         <th>Número Telefone</th>
         <th></th>
     </tr>
@@ -38,8 +37,7 @@
             <td>@local.Tipo</td>
             <td>@local.Logradouro?.Descricao</td>
             <td>@local.Logradouro?.Cep</td>
-            <td>@local.Telefone?.NumeroDDD</td>
-            <td>@local.Telefone?.Numero</td>
+            <td>(@local.Telefone?.NumeroDDD) @local.Telefone?.Numero</td>
             <td>
                 <a asp-action="editar" asp-route-id="@local.LocalId" class="btn btn-sm btn-dark">Editar</a>
                 <a asp-action="detalhar" asp-route-id="@local.LocalId" class="btn btn-sm btn-warning">Detalhar</a>

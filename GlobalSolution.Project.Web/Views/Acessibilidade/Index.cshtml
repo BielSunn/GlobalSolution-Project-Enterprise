@@ -7,15 +7,7 @@
         <h1>Cadastro de Acessibilidade</h1>
 
         <form asp-action="cadastrar">
-            <div class="mb-3">
-                <label asp-for="TipoAcessibilidade"></label>
-                <input asp-for="TipoAcessibilidade" class="form-control" />
-            </div>
-
-            <div class="mb-3">
-                <label asp-for="Descricao"></label>
-                <textarea asp-for="Descricao" cols="20" rows="2" class="form-control"></textarea>
-            </div>
+            <partial name="_Form" />
 
             <button class="btn btn-primary">Salvar</button>
         </form>
@@ -28,6 +20,7 @@
             <tr>
                 <th>Tipo</th>
                 <th>Descrição</th>
+                <th>Status</th>
                 <th></th>
             </tr>
 
@@ -36,13 +29,14 @@
                 <tr>
                     <td>@item.TipoAcessibilidade</td>
                     <td>@item.Descricao</td>
-            <td>
-                <a asp-action="editar" asp-route-id="@item.AcessibilidadeId" class="btn btn-sm btn-warning">Editar</a>
-                <!-- Button trigger modal -->
-                <button onclick="acessibilidadeId.value = @item.AcessibilidadeId" type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Remover
-                </button>
-            </td>
+                    <td>@(item.Status?"Disponível":"Indisponível")</td>
+                    <td>
+                        <a asp-action="editar" asp-route-id="@item.AcessibilidadeId" class="btn btn-sm btn-warning">Editar</a>
+                        <!-- Button trigger modal -->
+                        <button onclick="acessibilidadeId.value = @item.AcessibilidadeId" type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            Remover
+                        </button>
+                    </td>
                 </tr>
             }
 

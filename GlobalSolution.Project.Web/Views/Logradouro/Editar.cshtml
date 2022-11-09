@@ -1,14 +1,13 @@
-﻿@model Acessibilidade
+﻿@model Logradouro
 
-<h1>Edição Acessibilidade</h1>
-
-<mensagem texto="@TempData["msg"]"></mensagem>
+<h1>Edição Logradouro</h1>
 
 <form asp-action="editar">
-    <input asp-for="AcessibilidadeId" />
 
+    <input asp-for="LogradouroId" />
     <partial name="_Form" />
 
     <button class="btn btn-primary">Editar</button>
     <a asp-action="index" class="btn btn-outline-dark">Voltar</a>
+
 </form>

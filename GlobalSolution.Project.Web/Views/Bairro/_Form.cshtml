@@ -1,0 +1,13 @@
+﻿@model Bairro
+
+<div class="mb-3">
+    <label asp-for="Nome"></label>
+    <input asp-for="Nome" class="form-control" />
+</div>
+
+<div class="mb-3">
+    <label asp-for="Cidade"></label>
+    <select class="form-select" asp-items="@ViewBag.cidades" asp-for="CidadeId">
+        <option>Selecione</option>
+    </select>
+</div>

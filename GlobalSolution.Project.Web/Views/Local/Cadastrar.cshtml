@@ -3,13 +3,29 @@
 
 <h1>Cadastro Local</h1>
 
-<form asp-action="cadastrar">
+@if (@ViewBag.qtdeLogradouro < 1)
+{
+    <div class="mb-3">
+        <h1>
+            <span class="badge bg-danger">
+                Não há nenhum Logradouro Cadastrado !
+                Para cadastrar o local é necessário realizar o cadastro de um Logradouro
+            </span>
+        </h1>
+    </div>
+    <a asp-action="cadastrar" asp-controller="logradouro" class="btn btn-outline-primary">Cadastrar Logradouro</a>
+}
+else
+{
+    <form asp-action="cadastrar">
 
-    <partial name="_Form" />
+        <partial name="_Form" />
 
-    <button class="btn btn-primary">Cadastrar</button>
-    <a asp-action="index" class="btn btn-outline-dark">Locais</a>
+        <button class="btn btn-primary">Cadastrar</button>
+        <a asp-action="index" class="btn btn-outline-dark">Locais</a>
 
-</form>
+    </form>
+}
+
 
 

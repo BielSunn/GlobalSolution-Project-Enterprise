@@ -4,25 +4,26 @@
 
 <mensagem texto="@TempData["msg"]"></mensagem>
 
-<form asp-action="cadastrar">
-
+@if (@ViewBag.qtdeBairro < 1)
+{
     <div class="mb-3">
-        <label asp-for="Descricao"></label>
-        <input asp-for="Descricao" class="form-control" />
+        <h1>
+            <span class="badge bg-danger">
+                Não há nenhum Bairro Cadastrado !
+                Para cadastrar o logradouro é necessário realizar o cadastro de um Bairro
+            </span>
+        </h1>
     </div>
+    <a asp-action="cadastrar" asp-controller="bairro" class="btn btn-outline-primary">Cadastrar Bairro</a>
+}
+else
+{
+    <form asp-action="cadastrar">
 
-    <div class="mb-3">
-        <label asp-for="Cep"></label>
-        <input asp-for="Cep" class="form-control" />
-    </div>
+        <partial name="_Form" />
 
-    <div class="mb-3">
-        <label asp-for="Bairro"></label>
-        <select class="form-select" asp-items="@ViewBag.bairros" asp-for="BairroId">
-            <option>Selecione</option>
-        </select>
-    </div>
+        <button class="btn btn-primary">Cadastrar</button>
+        <a asp-action="index" class="btn btn-outline-dark">Logradouros</a>
 
-    <button class="btn btn-primary">Cadastrar</button>
-
-</form>
+    </form>
+}

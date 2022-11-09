@@ -16,6 +16,9 @@ namespace GlobalSolution.Project.Web.Models
         [Column("ds_acessibilidade"), StringLength(500), Display(Name = "Descrição")]
         public string? Descricao { get; set; }
 
+        [Column("st_acessibilidade"), Display(Name = "Disponível")]
+        public bool Status { get; set; }
+
         //Relacionamento N:M
         public IList<AcessibilidadeLocal> AcessibilidadeLocal { get; set; }
 

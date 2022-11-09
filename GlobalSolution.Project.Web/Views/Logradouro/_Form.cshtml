@@ -1,0 +1,18 @@
+﻿@model Logradouro
+
+<div class="mb-3">
+    <label asp-for="Descricao"></label>
+    <input asp-for="Descricao" class="form-control" />
+</div>
+
+<div class="mb-3">
+    <label asp-for="Cep"></label>
+    <input asp-for="Cep" class="form-control" />
+</div>
+
+<div class="mb-3">
+    <label asp-for="Bairro"></label>
+    <select class="form-select" asp-items="@ViewBag.bairros" asp-for="BairroId">
+        <option>Selecione</option>
+    </select>
+</div>

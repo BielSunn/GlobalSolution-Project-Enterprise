@@ -29,28 +29,44 @@
 </div>
 
 <h2>Adicionar Acessibilidade</h2>
-<mensagem texto="@TempData["msg"]"></mensagem>
 
-<form asp-action="adicionar" class="row row-cols-lg-auto g-3 align-items-center mb-3">
-    <input type="hidden" name="LocalId" value="@Model.LocalId" />
-
+@if (@ViewBag.qtdeAcessibilidade < 1)
+{
     <div class="mb-3">
-        <label asp-for="Tipo"></label>
-        <select class="form-select" asp-items="@ViewBag.acessibilidades" name="AcessibilidadeId">
-            <option>Selecione</option>
-        </select>
+        <h1>
+            <span class="badge bg-danger">
+                Não há nenhuma Acessibilidade Cadastrada !
+            </span>
+        </h1>
     </div>
+    <a asp-action="index" asp-controller="acessibilidade" class="btn btn-outline-primary">Cadastrar Acessibilidade</a>
+}
+else
+{
+    <mensagem texto="@TempData["msg"]"></mensagem>
 
-    <button class="btn btn-success">Adicionar</button>
-</form>
+    <form asp-action="adicionar" class="row row-cols-lg-auto g-3 align-items-center mb-3">
+        <input type="hidden" name="LocalId" value="@Model.LocalId" />
 
-<h2>Acessibilidades Disponíveis no Local</h2>
-<ul class="list-group">
-    @foreach (var item in @ViewBag.listaLocais)
-    {
-        <li class="list-group-item">@item.TipoAcessibilidade <span class="badge bg-secondary">@item.AcessibilidadeId</span></li>
-    }
-</ul>
+        <div class="mb-3">
+            <label asp-for="Tipo"></label>
+            <select class="form-select" asp-items="@ViewBag.acessibilidades" name="AcessibilidadeId">
+                <option>Selecione</option>
+            </select>
+        </div>
+
+        <button class="btn btn-success">Adicionar</button>
+    </form>
+
+    <h2>Acessibilidades Disponíveis no Local</h2>
+    <ul class="list-group">
+        @foreach (var item in @ViewBag.listaLocais)
+        {
+            <li class="list-group-item">@item.TipoAcessibilidade <span class="badge bg-secondary">@item.AcessibilidadeId</span></li>
+        }
+    </ul>
+}
+
 
 
 
