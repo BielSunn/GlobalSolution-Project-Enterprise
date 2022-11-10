@@ -3,6 +3,7 @@ using GlobalSolution.Project.Web.Persistencia;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GlobalSolution.Project.Web.Migrations
 {
     [DbContext(typeof(GlobalSolutionContext))]
-    partial class GlobalSolutionContextModelSnapshot : ModelSnapshot
+    [Migration("20221110151327_ajusteTabelas5")]
+    partial class ajusteTabelas5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

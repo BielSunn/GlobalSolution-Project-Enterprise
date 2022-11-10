@@ -1,5 +1,9 @@
 ﻿@model Logradouro
 
+@{
+    ViewData["Title"] = "Edição Logradouro";
+}
+
 <h1>Edição Logradouro</h1>
 
 <form asp-action="editar">
@@ -7,7 +11,7 @@
     <input asp-for="LogradouroId" />
     <partial name="_Form" />
 
-    <button class="btn btn-primary">Editar</button>
-    <a asp-action="index" class="btn btn-outline-dark">Voltar</a>
+    <button class="btn btn-outline-primary">Editar</button>
+    <a asp-action="index" class="btn btn-outline-light">Voltar</a>
 
 </form>

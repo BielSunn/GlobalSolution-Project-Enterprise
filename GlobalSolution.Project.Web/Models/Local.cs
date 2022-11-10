@@ -18,10 +18,14 @@ namespace GlobalSolution.Project.Web.Models
 
         //Relacionamento 1:1
         public Telefone Telefone { get; set; }
+
+        [Column("id_telefone")]
         public int TelefoneId { get; set; } //FK
 
         //Relacionamento N:1
         public Logradouro Logradouro { get; set; }
+
+        [Column("id_logradouro")]
         public int LogradouroId { get; set; }
 
         //Relacionamento N:M

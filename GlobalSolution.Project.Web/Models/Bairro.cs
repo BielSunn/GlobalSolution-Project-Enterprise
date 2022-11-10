@@ -15,6 +15,8 @@ namespace GlobalSolution.Project.Web.Models
 
         //Relacionamento N:1
         public Cidade Cidade { get; set; }
+
+        [Column("id_cidade")]
         public int CidadeId { get; set; }
 
         //Relacionamento 1:N

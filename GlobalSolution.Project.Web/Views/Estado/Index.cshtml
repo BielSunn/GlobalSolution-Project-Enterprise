@@ -1,5 +1,9 @@
 ﻿@model List<Estado>
 
+@{
+    ViewData["Title"] = "Estados";
+}
+
 <h1>Estados</h1>
 
 <mensagem texto="@TempData["msg"]"></mensagem>
@@ -42,7 +46,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                Realmente deseja excluir o Estado? 
+                Realmente deseja excluir o Estado?
                 <span class="badge bg-danger">Caso esteja atrelado a algum registro, eles também serão deletados em cascada</span>
             </div>
             <div class="modal-footer">

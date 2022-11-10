@@ -15,6 +15,8 @@ namespace GlobalSolution.Project.Web.Models
 
         //Relacionamento N:1
         public Estado Estado { get; set; }
+
+        [Column("id_estado")]
         public int EstadoId { get; set; }
 
         //Relacionamento 1:N

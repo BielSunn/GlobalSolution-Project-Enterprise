@@ -18,6 +18,8 @@ namespace GlobalSolution.Project.Web.Models
 
         //Relacionamento N:1
         public Bairro Bairro { get; set; }
+
+        [Column("id_bairro")]
         public int BairroId { get; set; }
 
         //Relacionamento 1:N

@@ -1,5 +1,8 @@
 ﻿@model Local
 
+@{
+    ViewData["Title"] = "Detalhes Local";
+}
 
 <h1>
     <span class="badge bg-primary">@Model.Nome</span>
@@ -24,8 +27,8 @@
 </table>
 
 <div class="mb-3">
-    <a asp-action="editar" asp-route-id="@Model.LocalId" class="btn btn-outline-primary">Editar</a>
-    <a asp-action="index" class="btn btn-outline-dark">Lista de Locais</a>
+    <a asp-action="editar" asp-route-id="@Model.LocalId" class="btn btn-outline-warning">Editar</a>
+    <a asp-action="index" class="btn btn-outline-light">Lista de Locais</a>
 </div>
 
 <h2>Adicionar Acessibilidade</h2>

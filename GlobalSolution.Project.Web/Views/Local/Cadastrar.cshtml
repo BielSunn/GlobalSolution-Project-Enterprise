@@ -1,5 +1,8 @@
 ﻿@model Local
 
+@{
+    ViewData["Title"] = "Cadastro Local";
+}
 
 <h1>Cadastro Local</h1>
 
@@ -21,8 +24,8 @@ else
 
         <partial name="_Form" />
 
-        <button class="btn btn-primary">Cadastrar</button>
-        <a asp-action="index" class="btn btn-outline-dark">Locais</a>
+        <button class="btn btn-outline-primary">Cadastrar</button>
+        <a asp-action="index" class="btn btn-outline-light">Locais</a>
 
     </form>
 }

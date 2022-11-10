@@ -5,8 +5,6 @@ namespace GlobalSolution.Project.Web.Persistencia
 {
     public class GlobalSolutionContext : DbContext
     {
-
-        public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Telefone> Telefones { get; set; }
         public DbSet<Estado> Estados { get; set; }
         public DbSet<Cidade> Cidades { get; set; }

@@ -1,5 +1,8 @@
 ﻿@model Local
 
+@{
+    ViewData["Title"] = "Edição Local";
+}
 
 <h1>Edição Local</h1>
 
@@ -8,8 +11,8 @@
     <input asp-for="LocalId" />
     <partial name="_Form" />
 
-    <button class="btn btn-primary">Editar</button>
-    <a asp-action="index" class="btn btn-outline-dark">Voltar</a>
+    <button class="btn btn-outline-primary">Editar</button>
+    <a asp-action="index" class="btn btn-outline-light">Voltar</a>
 
 </form>
 

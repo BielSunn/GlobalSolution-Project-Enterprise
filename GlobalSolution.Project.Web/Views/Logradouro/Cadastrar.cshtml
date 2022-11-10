@@ -1,5 +1,9 @@
 ﻿@model Logradouro
 
+@{
+    ViewData["Title"] = "Cadastro Logradouro";
+}
+
 <h1>Cadastro Logradouro</h1>
 
 <mensagem texto="@TempData["msg"]"></mensagem>
@@ -22,8 +26,8 @@ else
 
         <partial name="_Form" />
 
-        <button class="btn btn-primary">Cadastrar</button>
-        <a asp-action="index" class="btn btn-outline-dark">Logradouros</a>
+        <button class="btn btn-outline-primary">Cadastrar</button>
+        <a asp-action="index" class="btn btn-outline-light">Logradouros</a>
 
     </form>
 }

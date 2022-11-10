@@ -23,7 +23,7 @@ namespace GlobalSolution.Project.Web.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Integrantes()
         {
             return View();
         }
