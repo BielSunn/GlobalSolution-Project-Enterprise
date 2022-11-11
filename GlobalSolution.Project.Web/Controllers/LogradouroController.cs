@@ -22,7 +22,7 @@ namespace GlobalSolution.Project.Web.Controllers
             _context.Logradouros.Remove(logradouro);
             _context.SaveChanges();
 
-            TempData["msg"] = "Logradouro Deletado";
+            TempData["msg"] = "Logradouro Removido";
             return RedirectToAction("Index");
         }
 
@@ -32,7 +32,7 @@ namespace GlobalSolution.Project.Web.Controllers
             _context.Logradouros.Update(logradouro);
             _context.SaveChanges();
 
-            TempData["msg"] = "Logradouro Cadastrado";
+            TempData["msg"] = "Logradouro Atualizado";
             return RedirectToAction("Index");
         }
 

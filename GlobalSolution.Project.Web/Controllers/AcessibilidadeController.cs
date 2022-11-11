@@ -14,12 +14,24 @@ namespace GlobalSolution.Project.Web.Controllers
         }
 
         [HttpPost]
+        public IActionResult Excluir(int id)
+        {
+            var acessibilidade = _context.Acessibilidades.Find(id);
+
+            _context.Acessibilidades.Remove(acessibilidade);
+            _context.SaveChanges();
+
+            TempData["msg"] = "Acessibilidade Removida";
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
         public IActionResult Editar(Acessibilidade acessibilidade)
         {
             _context.Acessibilidades.Update(acessibilidade);
             _context.SaveChanges();
 
-            TempData["msg"] = "Acessibilidade atualizada !";
+            TempData["msg"] = "Acessibilidade Atualizada";
             return RedirectToAction("Index");
         }
 
@@ -34,23 +46,11 @@ namespace GlobalSolution.Project.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult Excluir(int id)
-        {
-            var acessibilidade = _context.Acessibilidades.Find(id);
-
-            _context.Acessibilidades.Remove(acessibilidade);
-            _context.SaveChanges();
-
-            TempData["msg"] = "Acessibilidade removida !";
-            return RedirectToAction("Index");
-        }
-
-        [HttpPost]
         public IActionResult Cadastrar(Acessibilidade acessibilidade)
         {
             _context.Acessibilidades.Add(acessibilidade);
             _context.SaveChanges();
-            TempData["msg"] = "Acessibilidade cadastrada !";
+            TempData["msg"] = "Acessibilidade Cadastrada";
             return RedirectToAction("Index");
         }
 

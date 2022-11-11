@@ -21,7 +21,7 @@ namespace GlobalSolution.Project.Web.Controllers
             _context.Estados.Remove(estado);
             _context.SaveChanges();
 
-            TempData["msg"] = "Estado Removido !";
+            TempData["msg"] = "Estado Removido";
             return RedirectToAction("Index");
         }
 
@@ -30,7 +30,7 @@ namespace GlobalSolution.Project.Web.Controllers
         {
             _context.Estados.Update(estado);
             _context.SaveChanges();
-            TempData["msg"] = "Estado Atualizado !";
+            TempData["msg"] = "Estado Atualizado";
 
             return RedirectToAction("Index");
         }
@@ -50,7 +50,7 @@ namespace GlobalSolution.Project.Web.Controllers
         {
             _context.Estados.Add(estado);
             _context.SaveChanges();
-            TempData["msg"] = "Estado Cadastrado !";
+            TempData["msg"] = "Estado Cadastrado";
 
             return RedirectToAction("Cadastrar");
         }
